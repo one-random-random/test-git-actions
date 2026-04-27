@@ -25,7 +25,7 @@ jobs:
           pwd
           cd ModelCleaning
           pip install pandas
-          python cleandata.python
+          python cleandata.py
           ls -al
       
       - name: train_test_dataset
