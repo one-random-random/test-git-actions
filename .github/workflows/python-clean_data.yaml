@@ -1,0 +1,34 @@
+name: pythonworkflow
+on: workflow_dispatch
+
+jobs:
+
+  data_pipeline:
+    name: data_pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.10
+      
+      - name: Check version of python
+        run: python --version
+
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: clean_data
+        run: |
+          pwd
+          ls -al
+          pwd
+          cd ModelCleaning
+          pip install pandas
+          python cleandata.python
+          ls -al
+      
+      - name: train_test_dataset
+        run: |
+          pip install scikit-learn joblib
+          python ModelCleaning/train_test_dataset.py
